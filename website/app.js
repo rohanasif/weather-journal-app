@@ -7,7 +7,7 @@ const key = "495c16bf9a0ac87f9a9f64850b6a6cb3";
 let d = new Date();
 let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
 
-// Use zipURL to receive long and lat by using zipcode
+// Use zipURL to receive lon and lat by using zipcode
 const userInfo = document.getElementById("userInfo");
 const generate = document.getElementById("generate");
 
@@ -27,9 +27,9 @@ const getCoords = async (zipURL, zip, key) => {
     }
 };
 
-// Function to get the weather data using the lat and long
+// Function to get the weather data using the lat and lon
 const getWeatherData = async (weatherURL, coords, key) => {
-    const res = await fetch(`${weatherURL}?lat=${coords.lat}&long=${coords.lon}&appid=${key}`);
+    const res = await fetch(`${weatherURL}?lat=${coords.lat}&lon=${coords.lon}&appid=${key}`);
     try {
         const data = await res.json();
 
