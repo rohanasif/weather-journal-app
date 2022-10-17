@@ -29,9 +29,10 @@ const getCoords = async (zipURL, zip, key) => {
 
 // Function to get the weather data using the lat and long
 const getWeatherData = async (weatherURL, coords, key) => {
-    const res = await fetch(`${weatherURL}?lat=${coords['lat']}&long=${coords['long']}&appid=${key}`);
+    const res = await fetch(`${weatherURL}?lat=${coords.lat}&long=${coords.lon}&appid=${key}`);
     try {
         const data = await res.json();
+
         return data;
     }
     catch (error) {
@@ -51,7 +52,7 @@ generate.addEventListener("click", (e) => {
             .then(coords => getWeatherData(weatherURL, coords, key))
             .then(function (data) {
                 // add data to POST request
-                postData("/add", { temp: kelvinToCelsius(data.main.temp), date: newDate, feelings: feelings });
+                postData("/add", { temp: kelvinToCelsius(data.temp), date: newDate, feelings: feelings });
             }).then(function () {
                 // call updateUI to update browser content
                 updateUI()
