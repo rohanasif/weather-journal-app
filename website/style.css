@@ -62,6 +62,10 @@ button {
     box-shadow: 2px 4px 5px #444;
 }
 
+button.invalid {
+    cursor: not-allowed;
+}
+
 h1 {
     font-size: 36px;
 }
