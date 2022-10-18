@@ -92,21 +92,22 @@ const postData = async (url = "", data = {}) => {
     }
 };
 
-const updateUI = async () => {
-    const request = await fetch("/all");
+const retrieveData = async () => {
+    const request = await fetch('/all');
     try {
-        const allData = await request.json();
-        console.log(allData);
-        // update new entry values
-        if (allData.date !== undefined && allData.temp !== undefined && allData.feelings !== undefined) {
-            document.getElementById("date").innerHTML = allData.date;
-            document.getElementById("temp").innerHTML = allData.temp + " degree C";
-            document.getElementById("feelings").innerHTML = allData.feelings;
-        }
-    } catch (error) {
-        console.log("error", error);
+        // Transform into JSON
+        const allData = await request.json()
+        console.log(allData)
+        // Write updated data to DOM elements
+        document.getElementById('temp').innerHTML = Math.round(allData.temp) + 'degrees';
+        document.getElementById('content').innerHTML = allData.feel;
+        document.getElementById("date").innerHTML = allData.date;
     }
-};
+    catch (error) {
+        console.log("error", error);
+        // appropriately handle the error
+    }
+}
 
 // helper function to convert temperature from Kelvin to Celsius
 function kelvinToCelsius(kelvin) {
