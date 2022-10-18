@@ -22,11 +22,9 @@ generate.addEventListener("click", (e) => {
         getCoords(zipURL, zip, key)
             .then(coords => getWeatherData(weatherURL, coords, key))
             .then(function (data) {
-                // add data to POST request
                 postData("/add", { temp: kelvinToCelsius(data.temp), date: newDate, feelings: feelings });
             }).then(function () {
-                // call updateUI to update browser content
-                updateUI()
+                receiveData()
             }).catch(function (error) {
                 console.log(error);
                 alert("The zip code is invalid. Try again");
@@ -92,7 +90,7 @@ const postData = async (url = "", data = {}) => {
     }
 };
 
-const retrieveData = async () => {
+const receiveData = async () => {
     const request = await fetch('/all');
     try {
         // Transform into JSON
