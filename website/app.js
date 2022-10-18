@@ -1,11 +1,11 @@
 /* Global Variables */
 const weatherURL = "https://api.openweathermap.org/data/3.0/onecall";
 const zipURL = "http://api.openweathermap.org/geo/1.0/zip"
-const key = "125f42aff073c9c5f0887b46a4dca02d";
+const key = "125f42aff073c9c5f0887b46a4dca02d&units=imperial";
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
+let newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
 
 // Use zipURL to receive lon and lat by using zipcode
 const userInfo = document.getElementById("userInfo");
