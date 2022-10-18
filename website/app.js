@@ -22,7 +22,7 @@ generate.addEventListener("click", (e) => {
         getCoords(zipURL, zip, key)
             .then(coords => getWeatherData(weatherURL, coords, key))
             .then(function (data) {
-                postData("/add", { temp: kelvinToCelsius(data.temp), date: newDate, feelings: feelings });
+                postData("/add", { temp: data.temp, date: newDate, feelings: feelings });
             }).then(function () {
                 receiveData()
             }).catch(function (error) {
@@ -67,7 +67,7 @@ const getWeatherData = async (weatherURL, coords, key) => {
     }
 }
 
-/* Function to POST data */
+// Function to POST data
 const postData = async (url = "", data = {}) => {
     const response = await fetch(url, {
         method: "POST",
@@ -89,7 +89,7 @@ const postData = async (url = "", data = {}) => {
         console.log(error);
     }
 };
-
+// Function to receive data
 const receiveData = async () => {
     const request = await fetch('/all');
     try {
@@ -104,14 +104,5 @@ const receiveData = async () => {
     catch (error) {
         console.log("error", error);
         // appropriately handle the error
-    }
-}
-
-// helper function to convert temperature from Kelvin to Celsius
-function kelvinToCelsius(kelvin) {
-    if (kelvin < (0)) {
-        return "below absolute zero (0 K)";
-    } else {
-        return (kelvin - 273.15).toFixed(2);
     }
 }
