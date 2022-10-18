@@ -27,7 +27,7 @@ generate.addEventListener("click", (e) => {
                 receiveData()
             }).catch(function (error) {
                 console.log(error);
-                alert("The zip code is invalid. Try again");
+                alert("Invalid zipcode");
 
             });
         userInfo.reset();
